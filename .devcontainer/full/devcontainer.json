@@ -4,8 +4,8 @@
   "image":"mcr.microsoft.com/devcontainers/universal:2",
 
   "postCreateCommand": "pip3 install pyyaml aura.tar.gz && gem uninstall asciidoctor-diagram:2.0.5  && gem install asciidoctor asciidoctor-diagram:2.0.2 ascii_binder",
-  "postStartCommand":  "python3 build.py --distro openshift-enterprise --product \"OpenShift Container Platform\" --version 4.13 --no-upstream-fetch && python3 makeBuild.py"
-  
+  //"postStartCommand":  "python3 build.py --distro openshift-enterprise --product \"OpenShift Container Platform\" --version 4.13 --no-upstream-fetch && python3 makeBuild.py"
+  "postStartCommand":  "mkdir /workspaces/ruby-tmp && chmod 1777 /workspaces/ruby-tmp && docker run --rm -it -v /workspaces/ruby-tmp:/tmp -v `pwd`:/docs:Z quay.io/openshift-cs/asciibinder asciibinder build --distro openshift-enterprise && BR=\"$(git branch --show-current)\" && cd _preview/openshift-enterprise/$BR &&  ln -s welcome/index.html index.html && ruby -run -ehttpd . -p8000"
   // &&  asciibinder build --distro=openshift-enterprise && BR=\"$(git branch --show-current)\" && cd _preview/openshift-enterprise/$BR &&  ln -s welcome/index.html index.html && ruby -run -ehttpd . -p8000"
  
  
