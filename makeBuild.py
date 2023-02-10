@@ -84,6 +84,9 @@ cli.init_logging(False, False)
 
 for distro in os.listdir("drupal-build"):
 
+    if distro == ".git":
+        continue
+        
     print("---------------------------------------")
     print(("BUILDING " + distro + " BOOKS"))
     print("---------------------------------------")
@@ -99,6 +102,7 @@ for distro in os.listdir("drupal-build"):
             #continue
 
         # rest api book is a pain and doesn't convert well
+
         if book == "rest_api":
           continue
 
