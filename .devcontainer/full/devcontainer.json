@@ -3,7 +3,7 @@
 
   "image":"mcr.microsoft.com/devcontainers/universal:2",
 
-  "postCreateCommand": "pip3 install pyyaml aura.tar.gz && gem uninstall asciidoctor-diagram-2.0.5 && gem install asciidoctor asciidoctor-diagram:2.0.2 ascii_binder",
+  "postCreateCommand": "rvm install 2.7.2 && rvm use 2.7.2 && pip3 install pyyaml aura.tar.gz  && gem install asciidoctor asciidoctor-diagram ascii_binder",
   "postStartCommand":  "python3 build.py --distro openshift-enterprise --product \"OpenShift Container Platform\" --version 4.13 --no-upstream-fetch && python3 makeBuild.py &&  asciibinder build --distro=openshift-enterprise && BR=\"$(git branch --show-current)\" && cd _preview/openshift-enterprise/$BR &&  ln -s welcome/index.html index.html && ruby -run -ehttpd . -p8000"
  
  
